@@ -59,9 +59,6 @@ const colorEmotions = [
     ]}
 ];
 
-// ===============================
-// Significados das emoções
-// ===============================
 const emotionMeanings = {
     paixão: 'Paixão é um forte sentimento de amor e desejo intenso.',
     energia: 'Energia representa vitalidade e força para agir.',
@@ -96,20 +93,20 @@ const emotionMeanings = {
 };
 
 // ===============================
-// Significados detalhados das cores com referência
+// Estudos detalhados das cores
 // ===============================
-const colorStudy = {
-    '#8B0000': { text: 'O vermelho escuro simboliza paixão intensa, força emocional e ação. Pesquisas indicam que o vermelho aumenta percepção de energia e excitação.', ref: 'Elliot, A.J. (2015). Color and Psychological Functioning. Annual Review of Psychology, 66, 95–120.' },
-    '#00008B': { text: 'O azul escuro está relacionado à serenidade, introspecção e confiança. Estudos mostram que o azul promove relaxamento e sensação de segurança.', ref: 'Kaya & Epps, 2004. Relationship between color and emotion.' },
-    '#FFD700': { text: 'O dourado/amarelo vivo representa alegria, otimismo e iluminação. Pesquisas indicam que cores amarelas aumentam humor positivo e sensação de energia.', ref: 'Hemphill, 1996. A note on adults’ color–emotion associations.' },
-    '#90EE90': { text: 'O verde claro transmite equilíbrio, calma e conexão com a natureza. Estudos apontam que o verde ajuda a reduzir estresse e aumentar foco.', ref: 'Ou & Luo, 2013. A study of color emotion and preference.' },
-    'purple': { text: 'O roxo está associado ao mistério, espiritualidade e criatividade. Pesquisas mostram que o roxo estimula imaginação e reflexão.', ref: 'Valdez & Mehrabian, 1994. Effects of color on emotions.' },
-    'orange': { text: 'O laranja evoca entusiasmo, energia vibrante e inovação criativa. Estudos indicam que o laranja pode aumentar motivação e ação.', ref: 'Elliot & Maier, 2012. Color-in-context theory.' },
-    'pink': { text: 'O rosa simboliza amor, ternura e conexões afetivas. Pesquisas mostram que tons de rosa promovem calma e sentimentos positivos.', ref: 'Kaya & Epps, 2004. Relationship between color and emotion.' },
-    '#654321': { text: 'O marrom escuro remete à segurança, estabilidade emocional e aconchego.', ref: 'Hemphill, 1996.' },
-    '#D3D3D3': { text: 'O cinza claro representa neutralidade, equilíbrio emocional e introspecção. Pesquisas indicam que tons neutros auxiliam foco e reflexão.', ref: 'Valdez & Mehrabian, 1994.' },
-    'black': { text: 'O preto representa poder, elegância e profundidade emocional.', ref: 'Elliot & Maier, 2012.' },
-    'white': { text: 'O branco transmite pureza, paz interior e clareza de pensamentos.', ref: 'Ou & Luo, 2013.' }
+const studyData = {
+    '#8B0000': { text: 'O vermelho escuro simboliza paixão intensa, energia e ação. Estudos indicam que o vermelho aumenta a excitação fisiológica e estimula a atenção.', ref: 'Elliot, 2015.' },
+    '#00008B': { text: 'O azul escuro transmite serenidade, introspecção e confiança. Pesquisas mostram que tons de azul favorecem calma e redução de estresse.', ref: 'Kaya & Epps, 2004.' },
+    '#FFD700': { text: 'O dourado/amarelo simboliza alegria, otimismo e iluminação. Estudos indicam associação com estímulo cognitivo e alerta.', ref: 'Hemphill, 1996.' },
+    '#90EE90': { text: 'O verde claro promove equilíbrio, esperança e conexão com a natureza. Pesquisas sugerem que verde reduz ansiedade e aumenta concentração.', ref: 'Ou & Luo, 2013.' },
+    'purple': { text: 'O roxo está ligado ao mistério, espiritualidade e imaginação. Estudos indicam que o roxo pode estimular criatividade e reflexão.', ref: 'Valdez & Mehrabian, 1994.' },
+    'orange': { text: 'O laranja representa energia, entusiasmo e criatividade. Pesquisas apontam associação com excitação emocional e motivação.', ref: 'Elliot & Maier, 2012.' },
+    'pink': { text: 'O rosa simboliza amor, ternura e afetividade. Estudos sugerem que o rosa acalma e promove sentimentos de cuidado.', ref: 'Kaya & Epps, 2004.' },
+    '#654321': { text: 'O marrom escuro transmite segurança, estabilidade e conforto. Pesquisas indicam efeito calmante e sensação de acolhimento.', ref: 'Hemphill, 1996.' },
+    '#D3D3D3': { text: 'O cinza claro representa neutralidade, equilíbrio emocional e introspecção. Estudos indicam que tons neutros auxiliam foco e reflexão.', ref: 'Hemphill, 1996.' },
+    'black': { text: 'O preto simboliza poder, elegância e profundidade emocional. Estudos associam o preto à autoridade e sofisticação.', ref: 'Elliot & Maier, 2012.' },
+    'white': { text: 'O branco transmite pureza, paz interior e clareza de pensamentos. Pesquisas mostram efeitos de relaxamento e sensação de espaço aberto.', ref: 'Ou & Luo, 2013.' }
 };
 
 // ===============================
@@ -170,14 +167,14 @@ function startQuiz() {
 function nextRound() {
     if(autoNextTimeout) clearTimeout(autoNextTimeout);
 
-    if(currentRound >= totalRounds){
+    if(currentRound >= totalRounds) {
         showSummary();
         return;
     }
 
     const allEmotions = getAllEmotions();
     let availableColors = colorEmotions.filter(c => !usedColors.has(c.color));
-    if(availableColors.length === 0){
+    if (availableColors.length === 0) {
         usedColors.clear();
         availableColors = colorEmotions.slice();
     }
@@ -238,7 +235,9 @@ function checkAnswer(selectedEmotion, clickedButton) {
 
     buttons.forEach(btn => btn.disabled = true);
     buttons.forEach(btn => {
-        if(btn.textContent.toLowerCase() === correctEmotion.toLowerCase()) btn.classList.add('correct');
+        if(btn.textContent.toLowerCase() === correctEmotion.toLowerCase()) {
+            btn.classList.add('correct');
+        }
     });
 
     let chosenBook = "";
@@ -251,8 +250,11 @@ function checkAnswer(selectedEmotion, clickedButton) {
         bookRecommendationElement.innerHTML = `<br>Livro recomendado: <em>${chosenBook}</em>`;
     } else {
         clickedButton.classList.add('incorrect');
+        const colorKey = currentColorData.color.toLowerCase();
+        const meaning = colorEmotions.find(c => c.color.toLowerCase() === colorKey)?.emotions.find(e => e.name === correctEmotion)?.name || '';
+        
         responseElement.innerHTML = `❌ Errado! A emoção correta era: <strong>${correctEmotion}</strong>.`;
-        bookRecommendationElement.innerHTML = `<br>Livro correto: <em>${correctBook}</em>`;
+        bookRecommendationElement.innerHTML = `<br>Significado da cor para a psicologia das cores: ${studyData[currentColorData.color].text}`;
         chosenBook = '-';
     }
 
@@ -271,7 +273,7 @@ function checkAnswer(selectedEmotion, clickedButton) {
 }
 
 // ===============================
-// Mostrar resumo e estudo
+// Mostrar resumo
 // ===============================
 function showSummary() {
     document.getElementById('quiz').style.display = 'none';
@@ -299,14 +301,15 @@ function showSummary() {
     });
 
     // Estudo detalhado das cores da rodada
-    results.forEach(r => {
-        const study = colorStudy[r.color] || colorStudy[r.color.toLowerCase()];
-        if(study){
+    const displayedColors = [...new Set(results.map(r => r.color))];
+    displayedColors.forEach(color => {
+        const data = studyData[color];
+        if(data){
             studyContent.innerHTML += `
                 <p>
-                    <span class="color-box-small" style="background:${r.color}"></span>
-                    <strong>${r.color} - ${r.emotion}:</strong> ${study.text}<br>
-                    <em>Referência: ${study.ref}</em>
+                    <span class="color-box-small" style="background:${color}"></span>
+                    <strong>${color}:</strong> ${data.text} <br>
+                    <em>Referência: ${data.ref}</em>
                 </p>
             `;
         }
@@ -323,4 +326,3 @@ document.getElementById('restart-btn').addEventListener('click', () => {
     document.getElementById('study').style.display = 'none';
     document.getElementById('intro').style.display = 'block';
 });
-    
