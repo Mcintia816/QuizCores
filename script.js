@@ -266,7 +266,7 @@ function checkAnswer(selectedEmotion, clickedButton) {
     if(currentRound >= totalRounds){
         setTimeout(showSummary, 5000);
     } else {
-        autoNextTimeout = setTimeout(nextRound, 1000);
+        autoNextTimeout = setTimeout(nextRound, 10000);
     }
 }
 
@@ -303,6 +303,7 @@ document.getElementById('restart-btn').addEventListener('click', () => {
     document.getElementById('summary').style.display = 'none';
     document.getElementById('intro').style.display = 'block';
 });
+
 
 
 
