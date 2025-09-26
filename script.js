@@ -1,19 +1,63 @@
 // ===============================
-// Base de dados: Cores, Emoções e Livros
+// Base de dados: Cores, Emoções e Livros (emoção ↔ livro)
 // ===============================
 
 const colorEmotions = [
-    { color: 'red', emotions: ['paixão', 'energia', 'intensidade'], books: ['É Assim que Acaba – Colleen Hoover', 'Diário de uma Paixão – Nicholas Sparks', 'Jogos Vorazes – Suzanne Collins'] },
-    { color: '#00008B', emotions: ['tristeza', 'serenidade', 'confiança'], books: ['Um Amor para Recordar – Nicholas Sparks', 'A Culpa é das Estrelas – John Green', 'Verity – Colleen Hoover'] },
-    { color: '#FFD700', emotions: ['esperança', 'otimismo', 'alegria'], books: ['O Alquimista – Paulo Coelho', 'Procura-se um Marido – Carina Rissi', 'Tudo Nela Brilha e Queima – Ryane Leão'] },
-    { color: '#90EE90', emotions: ['equilíbrio', 'natureza', 'calma'], books: ['Encontrada – Carina Rissi', 'Uma Longa Jornada – Nicholas Sparks', 'O Hobbit – J.R.R. Tolkien'] },
-    { color: 'purple', emotions: ['mistério', 'espiritualidade', 'imaginação'], books: ['Prometida – Carina Rissi', 'O Código Da Vinci – Dan Brown', 'É Assim que Começa – Colleen Hoover'] },
-    { color: 'orange', emotions: ['energia', 'entusiasmo', 'criatividade'], books: ['Percy Jackson e o Ladrão de Raios – Rick Riordan', 'Harry Potter e a Pedra Filosofal – J.K. Rowling', 'Coraline – Neil Gaiman'] },
-    { color: 'pink', emotions: ['amor', 'delicadeza', 'afetividade'], books: ['Como Eu Era Antes de Você – Jojo Moyes', 'Para Todos os Garotos que Já Amei – Jenny Han', 'P.S.: Eu Te Amo – Cecelia Ahern'] },
-    { color: '#654321', emotions: ['segurança', 'conforto', 'estabilidade'], books: ['O Morro dos Ventos Uivantes – Emily Brontë', 'Cem Anos de Solidão – Gabriel García Márquez', 'Jane Eyre – Charlotte Brontë'] },
-    { color: '#D3D3D3', emotions: ['neutralidade', 'equilíbrio', 'solidão'], books: ['O Estrangeiro – Albert Camus', 'A Metamorfose – Franz Kafka', '1984 – George Orwell'] },
-    { color: 'black', emotions: ['mistério', 'poder', 'elegância'], books: ['Frankenstein – Mary Shelley', 'O Iluminado – Stephen King', 'Drácula – Bram Stoker'] },
-    { color: 'white', emotions: ['pureza', 'paz', 'clareza'], books: ['O Pequeno Príncipe – Antoine de Saint-Exupéry', 'A Cabana – William P. Young', 'Branca de Neve'] }
+    { color: 'red', emotions: [
+        { name: 'paixão', book: 'É Assim que Acaba – Colleen Hoover' },
+        { name: 'energia', book: 'Jogos Vorazes – Suzanne Collins' },
+        { name: 'intensidade', book: 'Diário de uma Paixão – Nicholas Sparks' }
+    ]},
+    { color: '#00008B', emotions: [
+        { name: 'tristeza', book: 'Um Amor para Recordar – Nicholas Sparks' },
+        { name: 'serenidade', book: 'A Culpa é das Estrelas – John Green' },
+        { name: 'confiança', book: 'Verity – Colleen Hoover' }
+    ]},
+    { color: '#FFD700', emotions: [
+        { name: 'esperança', book: 'O Alquimista – Paulo Coelho' },
+        { name: 'otimismo', book: 'Procura-se um Marido – Carina Rissi' },
+        { name: 'alegria', book: 'Tudo Nela Brilha e Queima – Ryane Leão' }
+    ]},
+    { color: '#90EE90', emotions: [
+        { name: 'equilíbrio', book: 'Uma Longa Jornada – Nicholas Sparks' },
+        { name: 'natureza', book: 'O Hobbit – J.R.R. Tolkien' },
+        { name: 'calma', book: 'Encontrada – Carina Rissi' }
+    ]},
+    { color: 'purple', emotions: [
+        { name: 'mistério', book: 'O Código Da Vinci – Dan Brown' },
+        { name: 'espiritualidade', book: 'Prometida – Carina Rissi' },
+        { name: 'imaginação', book: 'É Assim que Começa – Colleen Hoover' }
+    ]},
+    { color: 'orange', emotions: [
+        { name: 'energia', book: 'Percy Jackson e o Ladrão de Raios – Rick Riordan' },
+        { name: 'entusiasmo', book: 'Harry Potter e a Pedra Filosofal – J.K. Rowling' },
+        { name: 'criatividade', book: 'Coraline – Neil Gaiman' }
+    ]},
+    { color: 'pink', emotions: [
+        { name: 'amor', book: 'Como Eu Era Antes de Você – Jojo Moyes' },
+        { name: 'delicadeza', book: 'Para Todos os Garotos que Já Amei – Jenny Han' },
+        { name: 'afetividade', book: 'P.S.: Eu Te Amo – Cecelia Ahern' }
+    ]},
+    { color: '#654321', emotions: [
+        { name: 'segurança', book: 'O Morro dos Ventos Uivantes – Emily Brontë' },
+        { name: 'conforto', book: 'Cem Anos de Solidão – Gabriel García Márquez' },
+        { name: 'estabilidade', book: 'Jane Eyre – Charlotte Brontë' }
+    ]},
+    { color: '#D3D3D3', emotions: [
+        { name: 'neutralidade', book: '1984 – George Orwell' },
+        { name: 'equilíbrio', book: 'A Metamorfose – Franz Kafka' },
+        { name: 'solidão', book: 'O Estrangeiro – Albert Camus' }
+    ]},
+    { color: 'black', emotions: [
+        { name: 'mistério', book: 'Frankenstein – Mary Shelley' },
+        { name: 'poder', book: 'O Iluminado – Stephen King' },
+        { name: 'elegância', book: 'Drácula – Bram Stoker' }
+    ]},
+    { color: 'white', emotions: [
+        { name: 'pureza', book: 'O Pequeno Príncipe – Antoine de Saint-Exupéry' },
+        { name: 'paz', book: 'A Cabana – William P. Young' },
+        { name: 'clareza', book: 'Branca de Neve' }
+    ]}
 ];
 
 const emotionMeanings = {
@@ -68,6 +112,7 @@ const colorMeanings = {
 // ===============================
 let currentColorData = null;
 let correctEmotion = null;
+let correctBook = null;
 let usedColors = new Set();
 let autoNextTimeout = null;
 let results = [];
@@ -80,8 +125,8 @@ let currentRound = 0;
 function getAllEmotions() {
     let allEmotions = [];
     colorEmotions.forEach(entry => {
-        entry.emotions.forEach(emotion => {
-            if (!allEmotions.includes(emotion)) allEmotions.push(emotion);
+        entry.emotions.forEach(em => {
+            if (!allEmotions.includes(em.name)) allEmotions.push(em.name);
         });
     });
     return allEmotions;
@@ -136,7 +181,8 @@ function nextRound() {
 
     // 👉 Sorteia emoção diferente a cada rodada
     const randomIndex = Math.floor(Math.random() * currentColorData.emotions.length);
-    correctEmotion = currentColorData.emotions[randomIndex];
+    correctEmotion = currentColorData.emotions[randomIndex].name;
+    correctBook = currentColorData.emotions[randomIndex].book;
 
     currentRound++;
 
@@ -144,7 +190,7 @@ function nextRound() {
 
     const incorrectEmotions = [];
     for(let emotion of allEmotions){
-        if(!currentColorData.emotions.includes(emotion)){
+        if(!currentColorData.emotions.map(e => e.name).includes(emotion)){
             incorrectEmotions.push(emotion);
         }
         if(incorrectEmotions.length === 4) break;
@@ -196,7 +242,7 @@ function checkAnswer(selectedEmotion, clickedButton) {
 
     if(selectedEmotion.toLowerCase() === correctEmotion.toLowerCase()){
         clickedButton.classList.add('correct');
-        chosenBook = currentColorData.books[Math.floor(Math.random() * currentColorData.books.length)];
+        chosenBook = correctBook;
 
         responseElement.innerHTML = `✅ Você acertou!<br>A emoção <strong>${correctEmotion}</strong> expressa: ${emotionMeanings[correctEmotion]}`;
         bookRecommendationElement.innerHTML = `<br>Livro recomendado: <em>${chosenBook}</em>`;
@@ -207,7 +253,7 @@ function checkAnswer(selectedEmotion, clickedButton) {
 
         responseElement.innerHTML = `❌ Errado! A emoção correta era: <strong>${correctEmotion}</strong>.`;
         bookRecommendationElement.innerHTML = `<br>Significado da cor para a psicologia das cores: ${meaning}`;
-        chosenBook = currentColorData.books[0];
+        chosenBook = '-';
     }
 
     results.push({
@@ -257,4 +303,3 @@ document.getElementById('restart-btn').addEventListener('click', () => {
     document.getElementById('summary').style.display = 'none';
     document.getElementById('intro').style.display = 'block';
 });
-
