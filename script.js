@@ -150,7 +150,6 @@ function startQuiz() {
     document.getElementById('intro').style.display = 'none';
     document.getElementById('quiz').style.display = 'block';
     document.getElementById('summary').style.display = 'none';
-    document.getElementById('study').style.display = 'none';
 
     usedColors.clear();
     results = [];
@@ -263,14 +262,14 @@ function checkAnswer(selectedEmotion, clickedButton) {
     });
 
     if(currentRound >= totalRounds){
-        setTimeout(showSummary, 5000); // resumo após a última rodada
+        setTimeout(showSummary, 5000); // resumo após última rodada
     } else {
-        autoNextTimeout = setTimeout(nextRound, 10000);
+        autoNextTimeout = setTimeout(nextRound, 10000); // próximo depois de 10s
     }
 }
 
 // ===============================
-// Mostrar resumo e estudo da rodada
+// Mostrar resumo
 // ===============================
 function showSummary() {
     document.getElementById('quiz').style.display = 'none';
@@ -297,59 +296,58 @@ function showSummary() {
         `;
     });
 
-    // Estudo das cores usadas na rodada
-    results.forEach(r => {
-        const colorExplanation = colorMeanings[r.color] || colorMeanings[r.color.toLowerCase()] || '';
-        let reference = "";
+    // Estudo da cor da rodada
+    const lastRound = results[results.length -1];
+    const colorExplanation = colorMeanings[lastRound.color] || colorMeanings[lastRound.color.toLowerCase()] || '';
+    let reference = "";
 
-        switch(r.color.toLowerCase()){
-            case '#8b0000':
-                reference = "Elliot, A.J. (2015). Color and Psychological Functioning. Annual Review of Psychology, 66, 95–120.";
-                break;
-            case '#00008b':
-                reference = "Kaya, N., & Epps, H.H. (2004). Relationship between color and emotion: A study of college students. College Student Journal, 38(3), 396–405.";
-                break;
-            case '#ffd700':
-                reference = "Hemphill, M. (1996). A note on adults’ color–emotion associations. The Journal of Genetic Psychology, 157(3), 275–280.";
-                break;
-            case '#90ee90':
-                reference = "Ou, L., & Luo, M.R. (2013). A study of color emotion and preference. Color Research & Application, 38(1), 17–30.";
-                break;
-            case 'purple':
-                reference = "Valdez, P., & Mehrabian, A. (1994). Effects of color on emotions. Journal of Experimental Psychology: General, 123(4), 394–409.";
-                break;
-            case 'orange':
-                reference = "Elliot, A.J., & Maier, M.A. (2012). Color-in-context theory. Advances in Experimental Social Psychology, 45, 61–125.";
-                break;
-            case 'pink':
-                reference = "Kaya, N., & Epps, H.H. (2004). Relationship between color and emotion.";
-                break;
-            case '#654321':
-                reference = "Hemphill, M. (1996). A note on adults’ color–emotion associations.";
-                break;
-            case '#d3d3d3':
-                reference = "Valdez, P., & Mehrabian, A. (1994). Effects of color on emotions.";
-                break;
-            case 'black':
-                reference = "Elliot, A.J., & Maier, M.A. (2012). Color-in-context theory.";
-                break;
-            case 'white':
-                reference = "Ou, L., & Luo, M.R. (2013). A study of color emotion and preference.";
-                break;
-            default:
-                reference = "Psicologia das cores e estudos educacionais.";
-        }
+    switch(lastRound.color.toLowerCase()){
+        case '#8b0000':
+            reference = "Elliot, A.J. (2015). Color and Psychological Functioning. Annual Review of Psychology, 66, 95–120.";
+            break;
+        case '#00008b':
+            reference = "Kaya, N., & Epps, H.H. (2004). Relationship between color and emotion: A study of college students. College Student Journal, 38(3), 396–405.";
+            break;
+        case '#ffd700':
+            reference = "Hemphill, M. (1996). A note on adults’ color–emotion associations. The Journal of Genetic Psychology, 157(3), 275–280.";
+            break;
+        case '#90ee90':
+            reference = "Ou, L., & Luo, M.R. (2013). A study of color emotion and preference. Color Research & Application, 38(1), 17–30.";
+            break;
+        case 'purple':
+            reference = "Valdez, P., & Mehrabian, A. (1994). Effects of color on emotions. Journal of Experimental Psychology: General, 123(4), 394–409.";
+            break;
+        case 'orange':
+            reference = "Elliot, A.J., & Maier, M.A. (2012). Color-in-context theory. Advances in Experimental Social Psychology, 45, 61–125.";
+            break;
+        case 'pink':
+            reference = "Kaya, N., & Epps, H.H. (2004). Relationship between color and emotion.";
+            break;
+        case '#654321':
+            reference = "Hemphill, M. (1996). A note on adults’ color–emotion associations.";
+            break;
+        case '#d3d3d3':
+            reference = "Valdez, P., & Mehrabian, A. (1994). Effects of color on emotions.";
+            break;
+        case 'black':
+            reference = "Elliot, A.J., & Maier, M.A. (2012). Color-in-context theory.";
+            break;
+        case 'white':
+            reference = "Ou, L., & Luo, M.R. (2013). A study of color emotion and preference.";
+            break;
+        default:
+            reference = "Psicologia das cores e estudos educacionais.";
+    }
 
-        if(colorExplanation){
-            studyContent.innerHTML += `
-                <p>
-                    <span class="color-box-small" style="background:${r.color}"></span>
-                    <strong>${r.color}:</strong> ${colorExplanation} <br>
-                    <em>Referência: ${reference}</em>
-                </p>
-            `;
-        }
-    });
+    if(colorExplanation){
+        studyContent.innerHTML += `
+            <p>
+                <span class="color-box-small" style="background:${lastRound.color}"></span>
+                <strong>${lastRound.color}:</strong> ${colorExplanation} <br>
+                <em>Referência: ${reference}</em>
+            </p>
+        `;
+    }
 }
 
 // ===============================
@@ -362,3 +360,4 @@ document.getElementById('restart-btn').addEventListener('click', () => {
     document.getElementById('study').style.display = 'none';
     document.getElementById('intro').style.display = 'block';
 });
+            
