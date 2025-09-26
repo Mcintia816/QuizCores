@@ -3,7 +3,7 @@
 // ===============================
 
 const colorEmotions = [
-    { color: '#8B0000', emotions: ['paixão', 'energia', 'intensidade'], books: ['É Assim que Acaba – Colleen Hoover', 'Diário de uma Paixão – Nicholas Sparks', 'Jogos Vorazes – Suzanne Collins'] },
+    { color: 'red', emotions: ['paixão', 'energia', 'intensidade'], books: ['É Assim que Acaba – Colleen Hoover', 'Diário de uma Paixão – Nicholas Sparks', 'Jogos Vorazes – Suzanne Collins'] },
     { color: '#00008B', emotions: ['tristeza', 'serenidade', 'confiança'], books: ['Um Amor para Recordar – Nicholas Sparks', 'A Culpa é das Estrelas – John Green', 'Verity – Colleen Hoover'] },
     { color: '#FFD700', emotions: ['esperança', 'otimismo', 'alegria'], books: ['O Alquimista – Paulo Coelho', 'Procura-se um Marido – Carina Rissi', 'Tudo Nela Brilha e Queima – Ryane Leão'] },
     { color: '#90EE90', emotions: ['equilíbrio', 'natureza', 'calma'], books: ['Encontrada – Carina Rissi', 'Uma Longa Jornada – Nicholas Sparks', 'O Hobbit – J.R.R. Tolkien'] },
@@ -257,3 +257,4 @@ document.getElementById('restart-btn').addEventListener('click', () => {
     document.getElementById('summary').style.display = 'none';
     document.getElementById('intro').style.display = 'block';
 });
+
