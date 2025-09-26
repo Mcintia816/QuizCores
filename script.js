@@ -263,9 +263,9 @@ function checkAnswer(selectedEmotion, clickedButton) {
     });
 
     if(currentRound >= totalRounds){
-        setTimeout(showSummary, 1000); // mostra resumo após a última rodada
+        setTimeout(showSummary, 50000); // mostra resumo após a última rodada
     } else {
-        autoNextTimeout = setTimeout(nextRound, 1000);
+        autoNextTimeout = setTimeout(nextRound, 10000);
     }
 }
 
@@ -363,3 +363,4 @@ document.getElementById('restart-btn').addEventListener('click', () => {
     document.getElementById('intro').style.display = 'block';
 });
                     
+
