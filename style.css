@@ -1,6 +1,6 @@
 /* ============================ 
    Estilos Globais
-   ============================ */
+============================ */
 
 body {
     font-family: Arial, sans-serif;
@@ -25,7 +25,7 @@ h1, h2 {
 
 /* ============================
    Introdução
-   ============================ */
+============================ */
 #intro {
     margin-bottom: 30px;
 }
@@ -62,7 +62,7 @@ h1, h2 {
 
 /* ============================
    Quiz
-   ============================ */
+============================ */
 #progress {
     font-size: 16px;
     margin-bottom: 10px;
@@ -121,7 +121,7 @@ h1, h2 {
 
 /* ============================
    Resumo
-   ============================ */
+============================ */
 #summary {
     margin-top: 20px;
     text-align: left;
@@ -155,4 +155,27 @@ h1, h2 {
 
 #restart-btn:hover {
     background-color: #45a049;
+}
+
+/* ============================
+   Estudo / Explicação das cores
+============================ */
+#study {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#study-content {
+    margin: 15px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+#study .color-box-small {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    border-radius: 4px;
+    vertical-align: middle;
 }
