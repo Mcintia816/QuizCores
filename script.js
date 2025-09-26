@@ -115,7 +115,7 @@ let correctBook = null;
 let usedColors = new Set();
 let autoNextTimeout = null;
 let results = [];
-let totalRounds = 5; // padrão
+let totalRounds = 5;
 let currentRound = 0;
 
 // ===============================
@@ -166,7 +166,6 @@ function nextRound() {
 
     if(currentRound >= totalRounds) {
         showSummary();
-        showColorStudies();
         return;
     }
 
@@ -264,26 +263,28 @@ function checkAnswer(selectedEmotion, clickedButton) {
     });
 
     if(currentRound >= totalRounds){
-        setTimeout(() => {
-            showSummary();
-            showColorStudies();
-        }, 5000);
+        setTimeout(showSummary, 5000); // resumo após a última rodada
     } else {
-        autoNextTimeout = setTimeout(nextRound, 10000); // tempo entre rodadas
+        autoNextTimeout = setTimeout(nextRound, 10000);
     }
 }
 
 // ===============================
-// Mostrar resumo
+// Mostrar resumo e estudo da rodada
 // ===============================
 function showSummary() {
     document.getElementById('quiz').style.display = 'none';
     const summaryDiv = document.getElementById('summary');
     const summaryContent = document.getElementById('summary-content');
+    const studyDiv = document.getElementById('study');
+    const studyContent = document.getElementById('study-content');
 
     summaryDiv.style.display = 'block';
     summaryContent.innerHTML = "";
+    studyDiv.style.display = 'block';
+    studyContent.innerHTML = "";
 
+    // Resumo das rodadas
     results.forEach(r => {
         summaryContent.innerHTML += `
             <p>
@@ -295,75 +296,60 @@ function showSummary() {
             </p><hr>
         `;
     });
-}
 
-// ===============================
-// Mostrar estudo detalhado das cores
-// ===============================
-function showColorStudies() {
-    const studyDiv = document.getElementById('study');
-    const studyContent = document.getElementById('study-content');
-    studyDiv.style.display = 'block';
-    studyContent.innerHTML = "";
+    // Estudo das cores usadas na rodada
+    results.forEach(r => {
+        const colorExplanation = colorMeanings[r.color] || colorMeanings[r.color.toLowerCase()] || '';
+        let reference = "";
 
-    const studies = {
-        '#8B0000': {
-            text: 'O vermelho escuro é associado à paixão intensa, força emocional e ação. Estudos mostram que cores quentes como vermelho podem aumentar a excitação e a atenção.',
-            ref: 'Valdez & Mehrabian, 1994.'
-        },
-        '#00008B': {
-            text: 'O azul escuro está relacionado à serenidade, introspecção e confiança. Pesquisas indicam que tons de azul podem induzir calma e confiança.',
-            ref: 'Kaya & Epps, 2004.'
-        },
-        '#FFD700': {
-            text: 'O dourado (amarelo vivo) representa alegria, otimismo e iluminação. Estudos sugerem que amarelo pode melhorar o humor e a sensação de energia.',
-            ref: 'Hemphill, 1996.'
-        },
-        '#90EE90': {
-            text: 'O verde claro transmite frescor, calma e conexão com a natureza. Pesquisas indicam que verde está associado a relaxamento e equilíbrio.',
-            ref: 'Elliot & Maier, 2012.'
-        },
-        'purple': {
-            text: 'O roxo está ligado ao mistério, espiritualidade e criatividade imaginativa. Estudos apontam relação do roxo com imaginação e introspecção.',
-            ref: 'Valdez & Mehrabian, 1994.'
-        },
-        'orange': {
-            text: 'O laranja evoca entusiasmo, energia vibrante e inovação criativa. Pesquisas mostram que laranja aumenta motivação e entusiasmo.',
-            ref: 'Kaya & Epps, 2004.'
-        },
-        'pink': {
-            text: 'O rosa simboliza amor, ternura e conexões afetivas profundas. Estudos indicam que rosa transmite sensações de carinho e calma.',
-            ref: 'Kaya & Epps, 2004.'
-        },
-        '#654321': {
-            text: 'O marrom escuro remete à segurança, estabilidade emocional e aconchego. Estudos associam cores terrosas a conforto e estabilidade.',
-            ref: 'Elliot & Maier, 2012.'
-        },
-        '#D3D3D3': {
-            text: 'O cinza claro representa neutralidade, equilíbrio emocional e introspecção. Pesquisas indicam que tons neutros auxiliam foco e reflexão.',
-            ref: 'Hemphill, 1996.'
-        },
-        'black': {
-            text: 'O preto representa poder, elegância e profundidade emocional. Estudos indicam que preto está ligado a autoridade e sofisticação.',
-            ref: 'Elliot & Maier, 2012.'
-        },
-        'white': {
-            text: 'O branco transmite pureza, paz interior e clareza de pensamentos. Pesquisas mostram que branco está associado a limpeza e simplicidade.',
-            ref: 'Kaya & Epps, 2004.'
+        switch(r.color.toLowerCase()){
+            case '#8b0000':
+                reference = "Elliot, A.J. (2015). Color and Psychological Functioning. Annual Review of Psychology, 66, 95–120.";
+                break;
+            case '#00008b':
+                reference = "Kaya, N., & Epps, H.H. (2004). Relationship between color and emotion: A study of college students. College Student Journal, 38(3), 396–405.";
+                break;
+            case '#ffd700':
+                reference = "Hemphill, M. (1996). A note on adults’ color–emotion associations. The Journal of Genetic Psychology, 157(3), 275–280.";
+                break;
+            case '#90ee90':
+                reference = "Ou, L., & Luo, M.R. (2013). A study of color emotion and preference. Color Research & Application, 38(1), 17–30.";
+                break;
+            case 'purple':
+                reference = "Valdez, P., & Mehrabian, A. (1994). Effects of color on emotions. Journal of Experimental Psychology: General, 123(4), 394–409.";
+                break;
+            case 'orange':
+                reference = "Elliot, A.J., & Maier, M.A. (2012). Color-in-context theory. Advances in Experimental Social Psychology, 45, 61–125.";
+                break;
+            case 'pink':
+                reference = "Kaya, N., & Epps, H.H. (2004). Relationship between color and emotion.";
+                break;
+            case '#654321':
+                reference = "Hemphill, M. (1996). A note on adults’ color–emotion associations.";
+                break;
+            case '#d3d3d3':
+                reference = "Valdez, P., & Mehrabian, A. (1994). Effects of color on emotions.";
+                break;
+            case 'black':
+                reference = "Elliot, A.J., & Maier, M.A. (2012). Color-in-context theory.";
+                break;
+            case 'white':
+                reference = "Ou, L., & Luo, M.R. (2013). A study of color emotion and preference.";
+                break;
+            default:
+                reference = "Psicologia das cores e estudos educacionais.";
         }
-    };
 
-    for (let c in studies) {
-        const s = studies[c];
-        studyContent.innerHTML += `
-            <p>
-                <span class="color-box-small" style="background:${c}"></span>
-                <strong>Cor:</strong> ${c}<br>
-                ${s.text}<br>
-                <em>Referência:</em> ${s.ref}
-            </p><hr>
-        `;
-    }
+        if(colorExplanation){
+            studyContent.innerHTML += `
+                <p>
+                    <span class="color-box-small" style="background:${r.color}"></span>
+                    <strong>${r.color}:</strong> ${colorExplanation} <br>
+                    <em>Referência: ${reference}</em>
+                </p>
+            `;
+        }
+    });
 }
 
 // ===============================
