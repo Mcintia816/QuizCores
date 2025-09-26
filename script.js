@@ -263,14 +263,14 @@ function checkAnswer(selectedEmotion, clickedButton) {
     });
 
     if(currentRound >= totalRounds){
-        setTimeout(showSummary, 5000); // mostra resumo após a última rodada
+        setTimeout(showSummary, 5000); // ajusta para mostrar resumo após a última rodada
     } else {
         autoNextTimeout = setTimeout(nextRound, 10000);
     }
 }
 
 // ===============================
-// Mostrar resumo
+// Mostrar resumo + estudo das cores da rodada
 // ===============================
 function showSummary() {
     document.getElementById('quiz').style.display = 'none';
@@ -297,8 +297,12 @@ function showSummary() {
         `;
     });
 
-    // Estudo das cores da rodada
+    // Estudo detalhado das cores da rodada com referências reais
+    const displayedColors = new Set();
     results.forEach(r => {
+        if(displayedColors.has(r.color)) return; // evita repetição
+        displayedColors.add(r.color);
+
         const colorExplanation = colorMeanings[r.color] || colorMeanings[r.color.toLowerCase()] || '';
         let reference = "";
 
@@ -307,7 +311,7 @@ function showSummary() {
                 reference = "Elliot, A.J. (2015). Color and Psychological Functioning. Annual Review of Psychology, 66, 95–120.";
                 break;
             case '#00008b':
-                reference = "Kaya, N., & Epps, H.H. (2004). Relationship between color and emotion: A study of college students. College Student Journal, 38(3), 396–405.";
+                reference = "Kaya, N., & Epps, H.H. (2004). Relationship between color and emotion. College Student Journal, 38(3), 396–405.";
                 break;
             case '#ffd700':
                 reference = "Hemphill, M. (1996). A note on adults’ color–emotion associations. The Journal of Genetic Psychology, 157(3), 275–280.";
@@ -328,7 +332,7 @@ function showSummary() {
                 reference = "Hemphill, M. (1996). A note on adults’ color–emotion associations.";
                 break;
             case '#d3d3d3':
-                reference = "Valdez, P., & Mehrabian, P. (1994). Effects of color on emotions.";
+                reference = "Valdez, P., & Mehrabian, A. (1994). Effects of color on emotions.";
                 break;
             case 'black':
                 reference = "Elliot, A.J., & Maier, M.A. (2012). Color-in-context theory.";
@@ -362,3 +366,4 @@ document.getElementById('restart-btn').addEventListener('click', () => {
     document.getElementById('study').style.display = 'none';
     document.getElementById('intro').style.display = 'block';
 });
+                
