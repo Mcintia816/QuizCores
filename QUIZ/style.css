@@ -1,0 +1,158 @@
+/* ============================ 
+   Estilos Globais
+   ============================ */
+
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+.container {
+    max-width: 600px;
+    margin: auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.1);
+}
+
+/* ============================
+   Introdução
+   ============================ */
+#intro {
+    margin-bottom: 30px;
+}
+
+#intro p {
+    font-size: 16px;
+    color: #555;
+    margin: 10px 0;
+}
+
+#intro input {
+    padding: 8px;
+    font-size: 16px;
+    width: 80px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#intro button {
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+}
+
+#intro button:hover {
+    background-color: #45a049;
+}
+
+/* ============================
+   Quiz
+   ============================ */
+#progress {
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+.color-box {
+    width: 150px;
+    height: 150px;
+    margin: 20px auto;
+    border: 3px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.options {
+    margin: 20px 0;
+}
+
+.option {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    border: none;
+    background-color: #000080;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.option:hover {
+    background-color: #45a049;
+}
+
+.option.correct {
+    background-color: #2ecc71 !important;
+}
+
+.option.incorrect {
+    background-color: #e74c3c !important;
+}
+
+#response {
+    font-size: 20px;
+    margin-top: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+#book-recommendation {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #555;
+}
+
+/* ============================
+   Resumo
+   ============================ */
+#summary {
+    margin-top: 20px;
+    text-align: left;
+}
+
+#summary-content {
+    margin: 20px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+#summary .color-box-small {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    border-radius: 4px;
+    vertical-align: middle;
+}
+
+#restart-btn {
+    padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #4CAF50;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#restart-btn:hover {
+    background-color: #45a049;
+}

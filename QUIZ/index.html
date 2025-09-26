@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz de Emoções e Cores</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Tela de introdução -->
+        <div id="intro">
+            <h1>Psicologia das Cores</h1>
+            <p>Este quiz ajuda a explorar como as cores estão associadas a diferentes emoções.</p>
+            <p>Além disso, cada cor tem livros recomendados que se relacionam com essas emoções.</p>
+
+            <label for="rounds">Quantas rodadas deseja jogar?</label><br>
+            <input type="number" id="rounds" min="1" max="20" value="5"><br><br>
+
+            <button id="start-btn">Começar Quiz</button>
+        </div>
+
+        <!-- Quiz -->
+        <div id="quiz" style="display:none;">
+            <h2>Qual é a emoção associada a essa cor?</h2>
+            <p id="progress"></p>
+            <div class="color-box" id="color-box"></div>
+            <p>Escolha a emoção:</p>
+            <div class="options" id="options"></div>
+            <div id="response"></div>
+            <div id="book-recommendation"></div>
+        </div>
+
+        <!-- Resumo -->
+        <div id="summary" style="display:none;">
+            <h2>Resumo do Quiz</h2>
+            <div id="summary-content"></div>
+            <button id="restart-btn">Reiniciar Quiz</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
