@@ -3,7 +3,7 @@
 // ===============================
 
 const colorEmotions = [
-    { color: 'red', emotions: [
+    { color: '#8B0000', emotions: [
         { name: 'paixão', book: 'É Assim que Acaba – Colleen Hoover' },
         { name: 'energia', book: 'Jogos Vorazes – Suzanne Collins' },
         { name: 'intensidade', book: 'Diário de uma Paixão – Nicholas Sparks' }
@@ -303,3 +303,4 @@ document.getElementById('restart-btn').addEventListener('click', () => {
     document.getElementById('summary').style.display = 'none';
     document.getElementById('intro').style.display = 'block';
 });
+
