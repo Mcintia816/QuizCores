@@ -14,14 +14,14 @@ const colorEmotions = [
         { name: 'confiança', book: 'Verity – Colleen Hoover' }
     ]},
     { color: '#FFD700', emotions: [
-        { name: 'esperança', book: 'O Alquimista – Paulo Coelho' },
+        { name: 'energia', book: 'Jogos Vorazes – Suzanne Collins' },
         { name: 'otimismo', book: 'Procura-se um Marido – Carina Rissi' },
         { name: 'alegria', book: 'Tudo Nela Brilha e Queima – Ryane Leão' }
     ]},
     { color: '#90EE90', emotions: [
         { name: 'equilíbrio', book: 'Uma Longa Jornada – Nicholas Sparks' },
         { name: 'natureza', book: 'O Hobbit – J.R.R. Tolkien' },
-        { name: 'calma', book: 'Encontrada – Carina Rissi' }
+        { name: 'esperança', book: 'O alquimista – Paulo Coelho' }
     ]},
     { color: 'purple', emotions: [
         { name: 'mistério', book: 'O Código Da Vinci – Dan Brown' },
@@ -303,6 +303,7 @@ document.getElementById('restart-btn').addEventListener('click', () => {
     document.getElementById('summary').style.display = 'none';
     document.getElementById('intro').style.display = 'block';
 });
+
 
 
 
