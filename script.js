@@ -4,7 +4,7 @@
 
 const colorEmotions = [
     { color: '#8B0000', emotions: [
-        { name: 'paixão', book: 'É Assim que Acaba – Colleen Hoover' },
+        { name: 'paixão', book: 'Romeu e Julieta – William Shakespeare' },
         { name: 'energia', book: 'Jogos Vorazes – Suzanne Collins' },
         { name: 'intensidade', book: 'Diário de uma Paixão – Nicholas Sparks' }
     ]},
@@ -56,7 +56,7 @@ const colorEmotions = [
     { color: 'white', emotions: [
         { name: 'pureza', book: 'O Pequeno Príncipe – Antoine de Saint-Exupéry' },
         { name: 'paz', book: 'A Cabana – William P. Young' },
-        { name: 'clareza', book: 'Branca de Neve' }
+        { name: 'clareza', book: 'Branca de Neve - Irmãos Grimm' }
     ]}
 ];
 
@@ -303,4 +303,5 @@ document.getElementById('restart-btn').addEventListener('click', () => {
     document.getElementById('summary').style.display = 'none';
     document.getElementById('intro').style.display = 'block';
 });
+
 
